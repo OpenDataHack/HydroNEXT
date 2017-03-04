@@ -1,0 +1,17 @@
+sqlite3-vfslog
+sdesc: "vfslog extension for SQLite"
+ldesc: "SQLite is a C library that implements an embeddable SQL database
+engine.  Programs that link with the SQLite library can have SQL
+database access without running a separate RDBMS process. The
+distribution comes with a standalone command-line access program
+(sqlite3) that can be used to administer an SQLite database and which
+serves as an example of how to use the SQLite library."
+category: Database
+requires: cygwin libsqlite3_0
+version: 3.16.2-1
+install: x86_64/release/sqlite3/sqlite3-vfslog/sqlite3-vfslog-3.16.2-1.tar.xz 5428 c06a35469044f30e6bee31e222f482cdf1aa65e09b96af9ceebadd07b92c31defb1a70405db4fbb6e428bf21929607c6cacf6df29ea352da75c0d4c1f16dadee
+source: x86_64/release/sqlite3/sqlite3-3.16.2-1-src.tar.xz 2746924 d06c80fd1a8a8655c3a3915c8ca232f2345a74560efa5188fbe4a0a5f671038b62546353bd534a0620ab5214a8ccc02afe837f90813ab44cb2ba9ae6bf80e79e
+[prev]
+version: 3.15.2-1
+install: x86_64/release/sqlite3/sqlite3-vfslog/sqlite3-vfslog-3.15.2-1.tar.xz 5428 94904129d1c0d667e66ef455b89cd438b2cbe1576d234eb1ccb08c29d0d89a41be4a00706e27ed97025b3bfc6313cb818150d95908c464488dffac849cc22e7a
+source: x86_64/release/sqlite3/sqlite3-3.15.2-1-src.tar.xz 2741868 693802b79395f62555dda9af0942be48379d5ea862350d5de06f0ef6945a5314a2b4a4ec6f6056a32416a5d1c45d1712859aa062784f2afa1ee531feeb26247e

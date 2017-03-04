@@ -1,0 +1,9 @@
+94;ecological river flow;ecological river flow;(m3/s)
+95;Maximun flow;Maximun flow;(m3/s)
+96;Reservoir capacity;Reservoir capacity;(m3/s)
+97;net falling height or head;net falling height or head;(m)
+98;Number of turbines;Number of turbines;
+99;Type of turbines;Pelton;Pelton
+100;Type of turbines;FrancisHighSpeed;FrancisHighSpeed
+101;Type of turbines;FrancisLowSpeed ;FrancisLowSpeed 
+102;Type of turbines;Kaplan;Kaplan

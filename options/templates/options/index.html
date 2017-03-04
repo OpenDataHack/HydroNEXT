@@ -1,0 +1,210 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta htttp-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Toma de datos</title>
+
+</head>
+<body>
+<form action="" method="post">
+{% csrf_token %}
+
+  <fieldset class="module aligned ">
+    
+    
+    
+
+        <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Localización a Añadir: </label>
+                        
+                            <input class="vTextField" id="lugar" maxlength="200" name="lugar" type="text" value="" required />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+<div class="submit-row">
+<input type="submit" value="Consultar Latitud y Longitud" class="default" name="_consulta" />
+
+</div>
+
+
+
+</form>
+
+<form name="inputData" action="{% url 'options:mapa' %}" method="Post">
+{% csrf_token %}
+
+  <fieldset class="module aligned ">
+    
+ 
+        <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Lugar</label>
+                        
+                            <select class="vTextField" id="id_lugar_sel" maxlength="200" name="id_lugar_sel"  type="text"  required onchange="document.getElementById('localizacion_id').value=+this.value">
+							{% for opcion in opcionesLugares.all %}
+								<option value="{{ opcion.option_code }}">{{ opcion.option_text }}</option>
+							{% endfor %}
+							</select> 
+                        
+						<input class="vTextField" id="localizacion_id" maxlength="200" name="localizacion_id"  type="TEXT"  VALUE="32" >
+
+                    
+                </div>
+            
+        </div>
+           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Ecological River Flow</label>
+                        
+                            <input class="vTextField" id="opcionesEcoRiverFlow" maxlength="200" name="opcionesEcoRiverFlow" type="text"  required>
+						<span>	{% for opcion in opcionesEcoRiverFlow.all %}
+								{{ opcion.option_text }}
+							{% endfor %}</span>
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+		           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Maximum Flow</label>
+                        
+                            <input class="vTextField" id="opcionesMaximumFlow" maxlength="200" name="opcionesMaximumFlow" type="text"  required>
+						<span>	{% for opcion in opcionesMaximumFlow.all %}
+								{{ opcion.option_text }}
+							{% endfor %}</span>
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+				           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Reservoir Capacity</label>
+                        
+                            <input class="vTextField" id="opcionesReservoirCapacity" maxlength="200" name="opcionesReservoirCapacity" type="text"  required>
+						<span>	{% for opcion in opcionesReservoirCapacity.all %}
+								{{ opcion.option_text }}
+							{% endfor %}</span>
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+		
+				           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Net Head</label>
+                        
+                            <input class="vTextField" id="opcionesNetFalling" maxlength="200" name="opcionesNetFalling" type="text"  required>
+						<span>	{% for opcion in opcionesNetFalling.all %}
+								{{ opcion.option_text }}
+							{% endfor %}</span>
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+				           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">Number Of Turbines</label>
+                        
+                            <input class="vTextField" id="opcionesNumberOfTurbines" maxlength="200" name="opcionesNumberOfTurbines" type="text"  required>
+						<span>	{% for opcion in opcionesNumberOfTurbines.all %}
+								{{ opcion.option_text }}
+							{% endfor %}</span>
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+
+           <div class="form-row field-option_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_option_type">TypeOfTurbine</label>
+                        
+                            <select class="vTextField" id="opcionesTypeOfTurbine" maxlength="200" name="opcionesTypeOfTurbine" type="text"  required>
+							{% for opcion in opcionesTypeOfTurbine.all %}
+								<option>{{ opcion.option_code }}</option>
+							{% endfor %}
+							</select>
+                        
+                    
+                    
+                </div>
+            
+        </div> 
+		
+		<div class="submit-row">
+<input type="submit"  value="Consulta Caudal" class="default" id="_caudal" name="_caudal" />
+<input type="submit"  value="Consulta Energia" class="default" id="_energia" name="_energia" />
+<input type="submit"  value="Consulta Periodos" class="default" id="_periodos" name="_periodos" />
+
+</div>
+</fieldset>
+<!--
+<div class="submit-row">
+<input type="button" onclick="document.getElementById('grafica').src='{% url 'options:mapa' %}?localizacion_id='+document.getElementById('id_lugar_sel').value" value="Consulta Caudal" class="default" name="_caudal" />
+-->
+</div>
+
+
+
+</form>
+<!--
+<iframe style="width:1200px;height:500px" id="grafica" src="">
+</iframe>
+-->
+</body>
+</html>
