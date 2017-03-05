@@ -202,6 +202,13 @@
 
 
 </form>
+<form name="inputData2" action="{% url 'options:mapa' %}" method="Post">
+{% csrf_token %}
+
+<BR/>
+<input type="submit"  value="Flow Forecast" class="default" id="_forecast" name="_forecast" />
+</form>
+
 <!--
 <iframe style="width:1200px;height:500px" id="grafica" src="">
 </iframe>

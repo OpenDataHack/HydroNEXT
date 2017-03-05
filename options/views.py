@@ -11,6 +11,7 @@ from .models import Localizacion
 from .models import Coordenadas
 from . import readExcel
 from . import DataparametersClasss
+from . import ECMWF_dataRecover01
 
 import math
 import json
@@ -93,47 +94,52 @@ def index(request):
 
 
 def mapa(request):
-   type=""
-   if '_caudal' in request.POST:
+    type=""
+    if '_caudal' in request.POST:
      type="_caudal"
-   if '_energia' in request.POST:
+    if '_energia' in request.POST:
      type="_energia"
-   if '_periodos' in request.POST:
+    if '_periodos' in request.POST:
      type="_periodos"
-   if 'localizacion_id' in request.POST:
-      localizacion_id=request.POST['localizacion_id']
-      opcionesEcoRiverFlow=request.POST['opcionesEcoRiverFlow']
-      opcionesMaximumFlow=request.POST['opcionesMaximumFlow']
-      opcionesReservoirCapacity=request.POST['opcionesReservoirCapacity']
-      opcionesNetFalling=request.POST['opcionesNetFalling']
-      opcionesNumberOfTurbines=request.POST['opcionesNumberOfTurbines']
-      opcionesTypeOfTurbine=request.POST['opcionesTypeOfTurbine']
-      location = get_object_or_404(Localizacion, pk=localizacion_id)
-      try:
-        coordenadas = Coordenadas.objects.filter(local_ref = location.id)
-        if type=="_caudal":
-            return(readExcel.calculaCaudal(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion))
-        if type=="_energia":
-            dataparameters =DataparametersClasss.DataparametersClasss ()
+    if '_forecast' in request.POST:
+     type="_forecast"
+    if type=="_forecast":
+        return(ECMWF_dataRecover01.calculaCaudal(request))
 
-            dataparameters.opcionesEcoRiverFlow=opcionesEcoRiverFlow
-            dataparameters.opcionesMaximumFlow=opcionesMaximumFlow
-            dataparameters.opcionesReservoirCapacity=opcionesReservoirCapacity
-            dataparameters.opcionesNetFalling=opcionesNetFalling
-            dataparameters.opcionesNumberOfTurbines=opcionesNumberOfTurbines
-            dataparameters.opcionesTypeOfTurbine=opcionesTypeOfTurbine
-            return(readExcel.calculaEnergia(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion,dataparameters))
-        if type=="_periodos":
-            dataparameters =DataparametersClasss.DataparametersClasss ()
+    elif 'localizacion_id' in request.POST:
+        localizacion_id=request.POST['localizacion_id']
+        opcionesEcoRiverFlow=request.POST['opcionesEcoRiverFlow']
+        opcionesMaximumFlow=request.POST['opcionesMaximumFlow']
+        opcionesReservoirCapacity=request.POST['opcionesReservoirCapacity']
+        opcionesNetFalling=request.POST['opcionesNetFalling']
+        opcionesNumberOfTurbines=request.POST['opcionesNumberOfTurbines']
+        opcionesTypeOfTurbine=request.POST['opcionesTypeOfTurbine']
+        location = get_object_or_404(Localizacion, pk=localizacion_id)
+        try:
+            coordenadas = Coordenadas.objects.filter(local_ref = location.id)
+            if type=="_caudal":
+                return(readExcel.calculaCaudal(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion))
+            if type=="_energia":
+                dataparameters =DataparametersClasss.DataparametersClasss ()
 
-            dataparameters.opcionesEcoRiverFlow=opcionesEcoRiverFlow
-            dataparameters.opcionesMaximumFlow=opcionesMaximumFlow
-            dataparameters.opcionesReservoirCapacity=opcionesReservoirCapacity
-            dataparameters.opcionesNetFalling=opcionesNetFalling
-            dataparameters.opcionesNumberOfTurbines=opcionesNumberOfTurbines
-            dataparameters.opcionesTypeOfTurbine=opcionesTypeOfTurbine
-            return(readExcel.calculaPeriodo(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion,dataparameters))
-      except:
-       print("****errir**")
+                dataparameters.opcionesEcoRiverFlow=opcionesEcoRiverFlow
+                dataparameters.opcionesMaximumFlow=opcionesMaximumFlow
+                dataparameters.opcionesReservoirCapacity=opcionesReservoirCapacity
+                dataparameters.opcionesNetFalling=opcionesNetFalling
+                dataparameters.opcionesNumberOfTurbines=opcionesNumberOfTurbines
+                dataparameters.opcionesTypeOfTurbine=opcionesTypeOfTurbine
+                return(readExcel.calculaEnergia(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion,dataparameters))
+            if type=="_periodos":
+                dataparameters =DataparametersClasss.DataparametersClasss ()
+
+                dataparameters.opcionesEcoRiverFlow=opcionesEcoRiverFlow
+                dataparameters.opcionesMaximumFlow=opcionesMaximumFlow
+                dataparameters.opcionesReservoirCapacity=opcionesReservoirCapacity
+                dataparameters.opcionesNetFalling=opcionesNetFalling
+                dataparameters.opcionesNumberOfTurbines=opcionesNumberOfTurbines
+                dataparameters.opcionesTypeOfTurbine=opcionesTypeOfTurbine
+                return(readExcel.calculaPeriodo(request, coordenadas[0].latitud, coordenadas[0].longitud,coordenadas[0].descripcion,dataparameters))
+        except:
+            print("****errir**")
 
 
