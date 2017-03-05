@@ -1,4 +1,4 @@
-"# HydroNEXT" 
+# HydroNEXT
 <!--
 # Project submission templates for the OpenDataHack
 
