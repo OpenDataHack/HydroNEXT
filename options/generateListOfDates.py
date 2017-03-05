@@ -13,7 +13,6 @@ def ListOf30DaysAhead():
     for i in dateList:
         text=(str(i.isoformat()))
         textList.append(text)
-    print (textList)
     return(textList)
 
 ListOf30DaysAhead()
